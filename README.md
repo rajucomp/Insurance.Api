@@ -1,4 +1,4 @@
-﻿This is a Web API project built in .NET core 3.1 that calculates the insurance amount for a particular product or multiple products in an order.
+﻿This is a Web API project built in .NET core 3.1 that calculates the insurance amount for a particular product or multiple products in an order. Build the solution and run it. Browse to http://localhost:5001/. You should be greeted with a swagger page with all the endpoints exposed.
 
 ## Notable functions
 `CalculateInsurance(InsuranceDto insuranceDto);`
