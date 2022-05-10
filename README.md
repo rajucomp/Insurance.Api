@@ -1,13 +1,21 @@
-﻿This is a Web API project built in .NET core 3.1 that calculates the insurance amount for a particular order or multiple products in an order.
+﻿This is a Web API project built in .NET core 3.1 that calculates the insurance amount for a particular product or multiple products in an order.
 
 ## Notable functions
 `CalculateInsurance(InsuranceDto insuranceDto);`
 
 `CalculateInsurance(OrderDto orderDto);`
 
+# Requirements
+There is an existing endpoint that, given the information about the product, calculates the total cost of insurance according to the rules below:
+  - If the product sales price is less than € 500, no insurance required
+  - If the product sales price=> € 500 but < € 2000, insurance cost is € 1000
+  - If the product sales price=> € 2000, insurance cost is €2000
+  - If the type of the product is a smartphone or a laptop, add € 500 more to the insurance cost.
+
 
 # Task #1 
 ## Bug-Fix
+The financial manager reported that when customers buy a laptop that costs less than € 500, insurance is not calculated, while it should be € 500.
 
 There was a slight error. The if loop that checks whether we should add insurance amount for
 smartphones or laptops was inside another else condition while it should have been
@@ -15,6 +23,8 @@ outside of that if-else block.
 
 # Task #2 
 ## REFACTORING
+It looks like the already implemented functionality has some quality issues. Refactor that code, but be sure to maintain the same behavior. 
+
 1) I have used design pattern.
 2) `BusinessRules.cs` has been decomposed into three independent services.
 3) `ProductService.cs` is concerned with only getting the details of a product.
@@ -25,6 +35,8 @@ or an order probably with/without surcharge.
 7) I have used DI to inject my services into InsuranceController.
 
 # Task #3 
+Now we want to calculate the insurance cost for an order and for this, we are going to provide all the products that are in a shopping cart.
+
 ## Order
 I have added a new method `CalculateInsuranceForOrder(OrderDto orderDto)` which calculates the total insurance value for all of the products in an order.
 The request parameter and the response will look like this :-
@@ -52,10 +64,16 @@ The request parameter and the response will look like this :-
 An order contains `orderId`, orders denoting the list of products denoted by a list of `insuranceDtos`, a `quantity` field representing the quantity of each product and `insuranceAmount` denoting the total insurance amount for that order.
 
 # Task #4 
+We want to change the logic around the insurance calculation. We received a report from our business analysts that digital cameras are getting lost more than usual. Therefore, if an order has one or more digital cameras, add € 500 to the insured value of the order.
+
 ## Adding 500 euros to the order in case an order contains one or more digital cameras
 For this, we will simple update the logic in our controller to add the extra amount in cas we have one or more than one digital cameras.
 
 # Task #5
+As a part of this story we need to provide the administrators/back office staff with a new endpoint that will allow them to upload surcharge rates per product type. This surcharge will then  need to be added to the overall insurance value for the product type.
+
+Please be aware that this endpoint is going to be used simultaneously by multiple users.
+
 ## Exposing APIs to update surcharge
 
 ## Assumptions:-
