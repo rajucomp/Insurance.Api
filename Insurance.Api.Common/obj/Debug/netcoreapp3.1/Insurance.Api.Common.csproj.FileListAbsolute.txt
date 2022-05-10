@@ -1,9 +1,0 @@
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/bin/Debug/netcoreapp3.1/Insurance.Api.Common.deps.json
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/bin/Debug/netcoreapp3.1/Insurance.Api.Common.dll
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/bin/Debug/netcoreapp3.1/Insurance.Api.Common.pdb
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.GeneratedMSBuildEditorConfig.editorconfig
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.AssemblyInfoInputs.cache
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.AssemblyInfo.cs
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.csproj.CoreCompileInputs.cache
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.dll
-/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/obj/Debug/netcoreapp3.1/Insurance.Api.Common.pdb
