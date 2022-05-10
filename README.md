@@ -1,17 +1,20 @@
-﻿This is a Web API project built in .NET core 3.1 that calculates the insuarance amount for a particular order or multiple products in an order.
+﻿This is a Web API project built in .NET core 3.1 that calculates the insurance amount for a particular order or multiple products in an order.
 
-# Notable functions
+## Notable functions
 `CalculateInsurance(InsuranceDto insuranceDto);`
+
 `CalculateInsurance(OrderDto orderDto);`
 
 
-# Task #1 [Bug Fix] 
+# Task #1 
+## Bug-Fix
 
 There was a slight error. The if loop that checks whether we should add insurance amount for
 smartphones or laptops was inside another else condition while it should have been
 outside of that if-else block.
 
-# Task #2 [REFACTORING] 
+# Task #2 
+## REFACTORING
 1) I have used design pattern.
 2) `BusinessRules.cs` has been decomposed into three independent services.
 3) `ProductService.cs` is concerned with only getting the details of a product.
@@ -21,7 +24,8 @@ or an order probably with/without surcharge.
 6) Models shared among different services are moved into a seperate project for easy sharing.
 7) I have used DI to inject my services into InsuranceController.
 
-# Task #3 [Order]
+# Task #3 
+## Order
 I have added a new method `CalculateInsuranceForOrder(OrderDto orderDto)` which calculates the total insurance value for all of the products in an order.
 The request parameter and the response will look like this :-
 ```json
@@ -47,11 +51,14 @@ The request parameter and the response will look like this :-
 
 An order contains `orderId`, orders denoting the list of products denoted by a list of `insuranceDtos`, a `quantity` field representing the quantity of each product and `insuranceAmount` denoting the total insurance amount for that order.
 
-# Task #4 [Adding 500 euros to the order in case an order contains one or more digital cameras.]
+# Task #4 
+## Adding 500 euros to the order in case an order contains one or more digital cameras
 For this, we will simple update the logic in our controller to add the extra amount in cas we have one or more than one digital cameras.
 
-# Task #5[Exposing APIs to update surcharge]
-## Assumptions :-
+# Task #5
+## Exposing APIs to update surcharge
+
+## Assumptions:-
 Since surcharge rate is associated with a product type, it shoudl fall upon the
 `ProductTypeService.cs` to update that. Product Type will have an additional property to denote the surcharge rate. So, we assume that there is an endpoint listening at
 http://localhost:5002/product_types/surcharge and will receive the request as
