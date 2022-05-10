@@ -48,13 +48,13 @@ namespace Insurance.Api.Data
 
         public decimal CalculateInsuranceWithSurcharge(Product product, ProductType productType)
         {
-            //First calcuate the normal insurance rate and then add the surcharge.
+            //First calculate the normal insurance rate and then add the surcharge.
             return productType.CanBeInsured ? CalculateInsurance(product.SalesPrice, product.ProductTypeId) + productType.SurchargeRate : 0;    
         }
 
         public decimal CalculateInsuranceWithoutSurcharge(Product product, ProductType productType)
         {
-            //First calcuate the normal insurance rate and then add the surcharge.
+            //First calculate the normal insurance rate and then add the surcharge.
             return productType.CanBeInsured ? CalculateInsurance(product.SalesPrice, product.ProductTypeId) : 0;
         }
 
