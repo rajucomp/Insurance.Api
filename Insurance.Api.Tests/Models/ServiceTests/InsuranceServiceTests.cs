@@ -14,7 +14,7 @@ namespace Insurance.Api.Tests
         }
 
         [Fact]
-        public void CalculateInsurance_GivenSalesPriceBetween500And2000Euros_ShouldAddThousandEurosToInsuranceCost()
+        public void CalculateInsurance_GivenSalesPriceBetween500And2000EurosAndIsACamera_ShouldAdd1500EurosToInsuranceCost()
         {
             var product = new Product()
             {
@@ -33,9 +33,9 @@ namespace Insurance.Api.Tests
                 CanBeInsured = true
             };
 
-            const decimal expectedInsuranceValue = 1000;
+            const decimal expectedInsuranceValue = 1500;
 
-            var result = new InsuranceService().CalculateInsurance(product, productType);
+            var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
           
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
@@ -62,7 +62,7 @@ namespace Insurance.Api.Tests
 
             const decimal expectedInsuranceValue = 500;
 
-            var result = new InsuranceService().CalculateInsurance(product, productType);
+            var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
 
@@ -71,51 +71,39 @@ namespace Insurance.Api.Tests
         {
             var orderDto = new OrderDto()
             {
-                orderId = 1,
-                orders = new List<Order>()
+                OrderId = 1,
+                Orders = new List<Order>()
                 {
                     new Order()
                     {
-                        Product = new Product()
+                        InsuranceDto = new InsuranceDto()
                         {
 
                             ProductId = 837856,
-                            ProductName = "Lenovo Chromebook C330-11 81HY000MMH",
+                            ProductTypeName = "Lenovo Chromebook C330-11 81HY000MMH",
                             SalesPrice = 299,
-                            ProductTypeId = 21
-                        },
-                        ProductType = new ProductType()
-                        {
-
                             ProductTypeId = 21,
-                            ProductTypeName = "Laptops",
-                            CanBeInsured = true
+                            SurchargeRate = true
                         },
-                        quantity = 10
+                        Quantity = 10
                     },
                     new Order()
                     {
-                        Product = new Product()
+                        InsuranceDto = new InsuranceDto()
                         {
                             ProductId = 836194,
-                            ProductName = "Sony CyberShot DSC-RX100 VII",
+                            ProductTypeName = "Sony CyberShot DSC-RX100 VII",
                             SalesPrice = 1129,
-                            ProductTypeId = 33
-                        },
-                        ProductType = new ProductType()
-                        {
-
                             ProductTypeId = 33,
-                            ProductTypeName = "Digital cameras",
-                            CanBeInsured = true
+                            SurchargeRate = true
                         },
-                        quantity = 10
+                        Quantity = 10
                     }
                 }
             };
 
-            const decimal expectedInsuranceValue = 1500;
-            var result = new InsuranceService().CalculateInsurance(orderDto);
+            const decimal expectedInsuranceValue = 20000;
+            var result = new InsuranceService().CalculateInsuranceWithoutSurcharge(orderDto);
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
     }

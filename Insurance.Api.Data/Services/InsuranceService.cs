@@ -7,7 +7,7 @@ namespace Insurance.Api.Data
 {
     public class InsuranceService : IInsuranceService
     {
-        private decimal CalculateInsurance(decimal salesPrice, int productTypeId)
+        decimal CalculateInsurance(decimal salesPrice, int productTypeId)
         {
             decimal insuranceAmount = 0.0M;
 
@@ -37,7 +37,7 @@ namespace Insurance.Api.Data
             }
             */
 
-            if (productTypeId == (int)ProductTypeEnum.InsuredLaptops || productTypeId == (int)ProductTypeEnum.Smartphones)
+            if (productTypeId == (int)ProductTypeEnum.InsuredLaptops || productTypeId == (int)ProductTypeEnum.Smartphones ||  productTypeId == (int)ProductTypeEnum.InsuredDigitalCameras)
             {
                 insuranceAmount += 500; ;
             }
@@ -46,25 +46,26 @@ namespace Insurance.Api.Data
         }
 
 
-        public decimal CalculateInsurance(Product product, ProductType productType)
+        public decimal CalculateInsuranceWithSurcharge(Product product, ProductType productType)
         {
             //First calcuate the normal insurance rate and then add the surcharge.
             return productType.CanBeInsured ? CalculateInsurance(product.SalesPrice, product.ProductTypeId) + productType.SurchargeRate : 0;    
         }
 
-        //Task 3
-        public decimal CalculateInsurance(OrderDto orderDto)
+        public decimal CalculateInsuranceWithoutSurcharge(Product product, ProductType productType)
         {
-            decimal insuranceAmount = 0.0M;
+            //First calcuate the normal insurance rate and then add the surcharge.
+            return productType.CanBeInsured ? CalculateInsurance(product.SalesPrice, product.ProductTypeId) : 0;
+        }
 
-            for(int i = 0; i < orderDto.orders.Count; i++)
+        public decimal CalculateInsuranceWithoutSurcharge(OrderDto orderDto)
+        {
+            decimal insuranceAmount = 0;
+
+            foreach(var product in orderDto.Orders)
             {
-                insuranceAmount += CalculateInsurance(orderDto.orders[i].Product, orderDto.orders[i].ProductType);
-                insuranceAmount += orderDto.orders[i].ProductType.SurchargeRate;
+                insuranceAmount += CalculateInsurance(product.InsuranceDto.SalesPrice, product.InsuranceDto.ProductTypeId) * product.Quantity;
             }
-
-            //Task 4
-            insuranceAmount += orderDto.orders.Any(x => x.ProductType.Equals(ProductTypeEnum.InsuredDigitalCameras)) ? 500 : 0;
 
             return insuranceAmount;
         }

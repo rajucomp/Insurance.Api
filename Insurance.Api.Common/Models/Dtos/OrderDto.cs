@@ -7,10 +7,10 @@ namespace Insurance.Api.Common
     public class OrderDto
     {
         [JsonProperty("id")]
-        public int orderId { get; set; }
+        public int OrderId { get; set; }
 
         [JsonProperty("orders")]
-        public IList<Order> orders { get; set; }
+        public IList<Order> Orders { get; set; }
 
         [JsonProperty("insuranceAmount")]
         public decimal InsuranceAmount { get; set; }
@@ -18,13 +18,10 @@ namespace Insurance.Api.Common
 
     public class Order
     {
-        [JsonProperty("product")]
-        public Product Product { get; set; }
-
-        [JsonProperty("productType")]
-        public ProductType ProductType { get; set; }
+        [JsonProperty("insuranceDto")]
+        public InsuranceDto InsuranceDto { get; set; }
 
         [JsonProperty("quantity")]
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

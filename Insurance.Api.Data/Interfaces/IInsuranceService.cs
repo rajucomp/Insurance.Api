@@ -5,8 +5,11 @@ namespace Insurance.Api.Data
 {
     public interface IInsuranceService
     {
-        decimal CalculateInsurance(Product product, ProductType productType);
+        decimal CalculateInsuranceWithSurcharge(Product product, ProductType productType);
 
-        decimal CalculateInsurance(OrderDto orderDto);
+        decimal CalculateInsuranceWithoutSurcharge(Product product, ProductType productType);
+
+        decimal CalculateInsuranceWithoutSurcharge(OrderDto orderDto);
     }
+
 }

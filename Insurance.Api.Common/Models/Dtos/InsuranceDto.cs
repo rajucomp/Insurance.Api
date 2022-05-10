@@ -12,16 +12,19 @@ namespace Insurance.Api.Common
         [JsonProperty("insuranceValue")]
         public decimal InsuranceValue { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("productTypeName")]
         public string ProductTypeName { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("productTypeHasInsurance")]
         public bool ProductTypeHasInsurance { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("salesPrice")]
         public decimal SalesPrice { get; set; }
+
+        [JsonProperty("productTypeId")]
+        public int ProductTypeId { get; set; }
+
+        [JsonProperty("surchargeRate")]
+        public bool SurchargeRate { get; set; }
     }
 }

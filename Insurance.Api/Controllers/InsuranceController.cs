@@ -44,7 +44,7 @@ namespace Insurance.Api.Controllers
                     return StatusCode(StatusCodes.Status404NotFound);
                 }
 
-                insuranceDto.InsuranceValue = CalculateInsurance(insuranceDto.ProductId);
+                insuranceDto.InsuranceValue = CalculateInsurance(insuranceDto.ProductId, insuranceDto.SurchargeRate);
 
                 return Ok(insuranceDto);
             }
@@ -69,8 +69,8 @@ namespace Insurance.Api.Controllers
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
-                orderDto.InsuranceAmount = _insuranceService.CalculateInsurance(orderDto);
 
+                orderDto.InsuranceAmount = CalculateInsuranceForMultipleProducts(orderDto);
                 return Ok(orderDto);
             }
             catch(Exception ex)
@@ -87,13 +87,26 @@ namespace Insurance.Api.Controllers
             return _productService.Get(productId).Result != null;
         }
 
-        decimal CalculateInsurance(int productId)
+        decimal CalculateInsurance(int productId, bool chargeSurcharge)
         {
             var product = _productService.Get(productId).Result;
 
             var productType = _productTypeService.Get(product.ProductTypeId).Result;
 
-            return _insuranceService.CalculateInsurance(product, productType);
+            return chargeSurcharge ? _insuranceService.CalculateInsuranceWithSurcharge(product, productType) :
+                                    _insuranceService.CalculateInsuranceWithoutSurcharge(product, productType);
+        }
+
+        decimal CalculateInsuranceForMultipleProducts(OrderDto orderDto)
+        {
+            decimal insuranceAmount = 0.0M;
+
+            for (int i = 0; i < orderDto.Orders.Count; i++)
+            {
+                insuranceAmount += CalculateInsurance(orderDto.Orders[i].InsuranceDto.ProductId, orderDto.Orders[i].InsuranceDto.SurchargeRate);
+            }
+
+            return insuranceAmount;
         }
     }
 }

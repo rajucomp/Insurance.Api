@@ -64,7 +64,7 @@ namespace Insurance.Api.Tests
 
             _mockProductService.Setup(p => p.Get(product.ProductId)).ReturnsAsync(product);
             _mockProductTypeService.Setup(p => p.Get(product.ProductTypeId)).ReturnsAsync(productType);
-            _mockInsuranceService.Setup(p => p.CalculateInsurance(product, productType)).Returns(expectedInsuranceValue);
+            _mockInsuranceService.Setup(p => p.CalculateInsuranceWithoutSurcharge(product, productType)).Returns(expectedInsuranceValue);
             
             var insuranceController = new InsuranceController(_mockProductService.Object, _mockProductTypeService.Object, _mockInsuranceService.Object, _mockLogger.Object);
 
@@ -83,7 +83,7 @@ namespace Insurance.Api.Tests
                 ProductId = 837856,
                 ProductName = "Lenovo Chromebook C330-11 81HY000MMH",
                 SalesPrice = 299,
-                ProductTypeId = 21
+                ProductTypeId = 21,
             };
 
             var productType = new ProductType()
@@ -104,7 +104,7 @@ namespace Insurance.Api.Tests
 
             _mockProductService.Setup(p => p.Get(product.ProductId)).ReturnsAsync(product);
             _mockProductTypeService.Setup(p => p.Get(product.ProductTypeId)).ReturnsAsync(productType); ;
-            _mockInsuranceService.Setup(p => p.CalculateInsurance(product, productType)).Returns(expectedInsuranceValue);
+            _mockInsuranceService.Setup(p => p.CalculateInsuranceWithoutSurcharge(product, productType)).Returns(expectedInsuranceValue);
             
 
             
