@@ -25,7 +25,7 @@ outside of that if-else block.
 ## REFACTORING
 It looks like the already implemented functionality has some quality issues. Refactor that code, but be sure to maintain the same behavior. 
 
-1) I have used design pattern.
+1) I have used Dependency Injection (DI) design pattern and SOLID principles.
 2) `BusinessRules.cs` has been decomposed into three independent services.
 3) `ProductService.cs` is concerned with only getting the details of a product.
 4) `ProductTypeService.cs` is concerned with only getting the details of a product type.
