@@ -37,7 +37,7 @@ namespace Insurance.Api.Data
             }
             */
 
-            if (productTypeId == (int)ProductTypeEnum.InsuredLaptops || productTypeId == (int)ProductTypeEnum.Smartphones ||  productTypeId == (int)ProductTypeEnum.InsuredDigitalCameras)
+            if (productTypeId == (int)ProductTypeEnum.InsuredLaptops || productTypeId == (int)ProductTypeEnum.Smartphones)
             {
                 insuranceAmount += 500; ;
             }

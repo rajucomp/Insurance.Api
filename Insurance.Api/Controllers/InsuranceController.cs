@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Insurance.Api.Common;
 using Insurance.Api.Data;
@@ -105,6 +106,10 @@ namespace Insurance.Api.Controllers
             {
                 insuranceAmount += CalculateInsurance(orderDto.Orders[i].InsuranceDto.ProductId, orderDto.Orders[i].InsuranceDto.SurchargeRate);
             }
+
+            decimal extraChargeForDigitalCameras = orderDto.Orders.Any(x => x.InsuranceDto.ProductTypeId == (int)ProductTypeEnum.InsuredDigitalCameras) ? 500 : 0;
+
+            insuranceAmount += extraChargeForDigitalCameras;
 
             return insuranceAmount;
         }

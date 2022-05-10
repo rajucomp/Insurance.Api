@@ -33,7 +33,7 @@ namespace Insurance.Api.Tests
                 CanBeInsured = true
             };
 
-            const decimal expectedInsuranceValue = 1500;
+            const decimal expectedInsuranceValue = 1000;
 
             var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
           
@@ -102,7 +102,7 @@ namespace Insurance.Api.Tests
                 }
             };
 
-            const decimal expectedInsuranceValue = 20000;
+            const decimal expectedInsuranceValue = 15000;
             var result = new InsuranceService().CalculateInsuranceWithoutSurcharge(orderDto);
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }

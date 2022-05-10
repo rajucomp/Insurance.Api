@@ -60,7 +60,7 @@ namespace Insurance.Api.Tests
                 InsuranceValue = 1000
             };
 
-            const decimal expectedInsuranceValue = 1000;
+            const decimal expectedInsuranceValue = 1500;
 
             _mockProductService.Setup(p => p.Get(product.ProductId)).ReturnsAsync(product);
             _mockProductTypeService.Setup(p => p.Get(product.ProductTypeId)).ReturnsAsync(productType);
