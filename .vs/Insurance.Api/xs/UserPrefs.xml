@@ -1,0 +1,64 @@
+﻿<Properties StartupConfiguration="{3F722672-6756-41E6-B3E1-9A35E426B8E7}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Insurance.Api.Tests/Models/ControllerTests/InsuranceControllerTests.cs">
+    <Files>
+      <File FileName="Insurance.Api/Properties/launchSettings.json" Line="23" Column="28" />
+      <File FileName="Insurance.Api/Controllers/InsuranceController.cs" Line="58" Column="1" />
+      <File FileName="Insurance.Api.Tests/Models/ControllerTests/InsuranceControllerTests.cs" Line="51" Column="1" />
+      <File FileName="Insurance.Api.Common/Models/Dtos/InsuranceDto.cs" Line="6" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Insurance.Api" expanded="True">
+            <Node name="Insurance.Api" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Properties" expanded="True" />
+            </Node>
+            <Node name="Insurance.Api.Common" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="Dtos" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Insurance.Api.Data" expanded="True">
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+            <Node name="Insurance.Api.Tests" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="ControllerTests" expanded="True">
+                  <Node name="InsuranceControllerTests.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Insurance.Api" expanded="True">
+            <Node name="Insurance.Api.Tests" expanded="True">
+              <Node name="Insurance.Api.Tests" expanded="True">
+                <Node name="InsuranceControllerTests" expanded="True">
+                  <Node name="ShouldReturn400BadRequestInCaseOfInvalidRequest" selected="True" />
+                </Node>
+                <Node name="InsuranceServiceTests" expanded="True" />
+                <Node name="ProductServiceTests" expanded="True" />
+                <Node name="ProductTypeServiceTests" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Insurance.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "hXXyFhMf4Ecy0RYydOfP/WOMCY1siuP6TUvR3dA+G++cF/x19FgqoL1KXVq/7TJ62q7mnLOvWxeJF8Bo2ZUUzQ==",
+  "success": true,
+  "projectFilePath": "/Users/simonetemporary/Projects/Insurance.Api/Insurance.Api.Common/Insurance.Api.Common.csproj",
+  "expectedPackageFiles": [
+    "/Users/simonetemporary/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
