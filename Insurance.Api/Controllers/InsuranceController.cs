@@ -83,6 +83,37 @@ namespace Insurance.Api.Controllers
             
         }
 
+        [HttpPost, Route("/surcharge")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<InsuranceDto> PostSurcharge([FromBody] InsuranceDto InsuranceDto, decimal surCharge)
+        {
+            try
+            {
+                if (InsuranceDto == null)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest);
+                }
+
+                var productType = _productTypeService.Get(InsuranceDto.ProductTypeId).Result;
+                if (InsuranceDto == null || productType == null)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest);
+                }
+
+                var result = _productTypeService.Post(productType.ProductTypeId, surCharge);
+                return Ok(InsuranceDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(LogLevel.Error, ex.Message.ToString());
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "error occurred" });
+            }
+
+        }
+
         bool productExists(int productId)
         {
             return _productService.Get(productId).Result != null;

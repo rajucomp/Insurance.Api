@@ -159,6 +159,57 @@ namespace Insurance.Api.Tests
             Assert.NotNull(response);
             Assert.Equal(StatusCodes.Status400BadRequest, response.StatusCode);
         }
+
+
+        [Fact]
+        public void ShouldReturn400BadRequestWhileAddingSurchargeInCaseOfNullProductTypeId()
+        {
+            _mockProductTypeService.Setup(p => p.Post(1, 0));
+            var insuranceController = new InsuranceController(_mockProductService.Object, _mockProductTypeService.Object, _mockInsuranceService.Object, _mockLogger.Object);
+            var result = insuranceController.PostSurcharge(null, 0);
+            var response = (result.Result as StatusCodeResult);
+            Assert.NotNull(response);
+            Assert.Equal(StatusCodes.Status400BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public void ShouldReturn400BadRequestWhileAddingSurchargeInCaseOfInvalidProductTypeId()
+        {
+            //Arrange
+            var insuranceDto = new InsuranceDto
+            {
+                ProductId = -1,
+            };
+            var insuranceDto1 = new InsuranceDto
+            {
+                ProductId = 0,
+            };
+            var insuranceDto2 = new InsuranceDto
+            {
+                ProductId = 454,
+            };
+
+            _mockProductTypeService.Setup(p => p.Post(insuranceDto.ProductId, 1.0M)).ReturnsAsync(null);
+            _mockProductTypeService.Setup(p => p.Post(insuranceDto1.ProductId, 1.0M)).ReturnsAsync(null);
+            _mockProductTypeService.Setup(p => p.Post(insuranceDto2.ProductId, 1.0M)).ReturnsAsync(null);
+
+            //Act
+            var insuranceController = new InsuranceController(_mockProductService.Object, _mockProductTypeService.Object, _mockInsuranceService.Object, _mockLogger.Object);
+            var result = insuranceController.PostSurcharge(null, 0);
+            var result1 = insuranceController.PostSurcharge(null, 0);
+            var result2 = insuranceController.PostSurcharge(null, 0);
+
+            //Assert
+            var response = (result.Result as StatusCodeResult);
+            var response1 = (result1.Result as StatusCodeResult);
+            var response2 = (result2.Result as StatusCodeResult);
+            Assert.NotNull(response);
+            Assert.NotNull(response1);
+            Assert.NotNull(response2);
+            Assert.Equal(StatusCodes.Status400BadRequest, response.StatusCode);
+            Assert.Equal(StatusCodes.Status400BadRequest, response1.StatusCode);
+            Assert.Equal(StatusCodes.Status400BadRequest, response1.StatusCode);
+        }
     }
 
     public class ControllerTestFixture : IDisposable
