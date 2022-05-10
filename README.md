@@ -105,3 +105,7 @@ We won't be able to validate this obviosuly since this endpoint does not exist y
 4) We assume there is no limit on the number of products that can be in an order.
 5) We assume an order will always contain valid productIds.
 6) Some of the comparison logic has been changed for brevity. Rather than comparing with their names, we compare a product type with their corresponding ids as the names may change in future. Whenever appropriate, comments have been added to explain what we are doing in the code.
+
+
+# Highlights
+Automatic Github Actions build and test the solution before pushing to the branch.
