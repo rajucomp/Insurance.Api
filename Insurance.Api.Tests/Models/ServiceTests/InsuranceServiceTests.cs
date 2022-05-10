@@ -9,8 +9,11 @@ namespace Insurance.Api.Tests
 {
     public class InsuranceServiceTests : IInsuranceServiceTests
     {
+        private readonly IInsuranceService _insuranceService;
+
         public InsuranceServiceTests()
         {
+            _insuranceService = new InsuranceService();
         }
 
         [Fact]
@@ -37,7 +40,7 @@ namespace Insurance.Api.Tests
             const decimal expectedInsuranceValue = 1000;
 
             //Act
-            var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
+            var result = _insuranceService.CalculateInsuranceWithSurcharge(product, productType);
 
             //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
@@ -67,7 +70,7 @@ namespace Insurance.Api.Tests
             const decimal expectedInsuranceValue = 500;
 
             //Act
-            var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
+            var result = _insuranceService.CalculateInsuranceWithSurcharge(product, productType);
 
             //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
@@ -113,7 +116,7 @@ namespace Insurance.Api.Tests
             const decimal expectedInsuranceValue = 15000;
 
             //Act
-            var result = new InsuranceService().CalculateInsuranceWithoutSurcharge(orderDto);
+            var result = _insuranceService.CalculateInsuranceWithoutSurcharge(orderDto);
 
             //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
