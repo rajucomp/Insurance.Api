@@ -67,7 +67,7 @@ An order contains `orderId`, orders denoting the list of products denoted by a l
 We want to change the logic around the insurance calculation. We received a report from our business analysts that digital cameras are getting lost more than usual. Therefore, if an order has one or more digital cameras, add € 500 to the insured value of the order.
 
 ## Adding 500 euros to the order in case an order contains one or more digital cameras
-For this, we will simple update the logic in our controller to add the extra amount in cas we have one or more than one digital cameras.
+For this, we will simply update the logic in our `InsuranceController` to add the extra amount in case we have one or more than one digital cameras.
 
 # Task #5
 As a part of this story we need to provide the administrators/back office staff with a new endpoint that will allow them to upload surcharge rates per product type. This surcharge will then  need to be added to the overall insurance value for the product type.
