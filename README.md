@@ -103,4 +103,5 @@ We won't be able to validate this obviosuly since this endpoint does not exist y
 2) We assume that if `canBeInsured` is false for a product, the insurance amount for that product is 0.
 3) We assume that in case of an invalid product id, we return 404 and 400 in case of a bad request and 500 in case of any other exceptions.
 4) We assume there is no limit on the number of products that can be in an order.
-5) Some of the comparison logic has been changed for brevity. Rather than comparing with their names, we compare a product type with their corresponding ids as the names may change in future. Whenever appropriate, comments have been added to explain what we are doing in the code.
+5) We assume an order will always contain valid productIds.
+6) Some of the comparison logic has been changed for brevity. Rather than comparing with their names, we compare a product type with their corresponding ids as the names may change in future. Whenever appropriate, comments have been added to explain what we are doing in the code.

@@ -37,6 +37,7 @@ namespace Insurance.Api.Tests
         [Fact]
         public void CalculateInsurance_GivenSalesPriceBetween500And2000Euros_ShouldAddThousandEurosToInsuranceCost()
         {
+            //Arrange
             var product = new Product()
             {
 
@@ -65,18 +66,22 @@ namespace Insurance.Api.Tests
             _mockProductService.Setup(p => p.Get(product.ProductId)).ReturnsAsync(product);
             _mockProductTypeService.Setup(p => p.Get(product.ProductTypeId)).ReturnsAsync(productType);
             _mockInsuranceService.Setup(p => p.CalculateInsuranceWithoutSurcharge(product, productType)).Returns(expectedInsuranceValue);
+
             
             var insuranceController = new InsuranceController(_mockProductService.Object, _mockProductTypeService.Object, _mockInsuranceService.Object, _mockLogger.Object);
 
+            //Act
             var result = insuranceController.CalculateInsurance(insuranceDto);
-            InsuranceDto actualInsuranceValue = (result.Result as OkObjectResult).Value as InsuranceDto;
 
+            //Assert
+            InsuranceDto actualInsuranceValue = (result.Result as OkObjectResult).Value as InsuranceDto;
             Assert.Equal(expected: expectedInsuranceValue, actual: actualInsuranceValue.InsuranceValue, 2);
         }
 
         [Fact]
         public void CalculateInsurance_GivenSalesPriceLessThan500EurosAndIsALaptop_ShouldAdd500EurosToInsuranceCost()
         {
+            //Arrange
             var product = new Product()
             {
 
@@ -110,8 +115,11 @@ namespace Insurance.Api.Tests
             
             var insuranceController = new InsuranceController(_mockProductService.Object, _mockProductTypeService.Object, _mockInsuranceService.Object, _mockLogger.Object);
 
+            //Act
             var result = insuranceController.CalculateInsurance(insuranceDto);
 
+
+            //Assert
             var actualInsuranceValue = (result.Result as OkObjectResult).Value as InsuranceDto;
 
             Assert.Equal(expected: expectedInsuranceValue, actual: actualInsuranceValue.InsuranceValue, 2);

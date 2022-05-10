@@ -37,7 +37,7 @@ namespace Insurance.Api.Data
             string url = String.Format("{0}/{1}", _suffix, productTypeId);
             var response = await _httpClient.GetAsync(url);
 
-            if (response != null)
+            if (response != null && response.StatusCode != System.Net.HttpStatusCode.NotFound)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<ProductType>(jsonString);
@@ -51,7 +51,7 @@ namespace Insurance.Api.Data
             string url = String.Format("{0}/{1}", _surchargeSuffix, productTypeId);
             var response = await _httpClient.PostAsync(url, null);
 
-            if (response != null)
+            if(response != null && (response.StatusCode != System.Net.HttpStatusCode.BadRequest || response.StatusCode != System.Net.HttpStatusCode.NotFound))
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<bool>(jsonString);

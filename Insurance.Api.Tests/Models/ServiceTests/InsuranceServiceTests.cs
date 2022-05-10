@@ -16,6 +16,7 @@ namespace Insurance.Api.Tests
         [Fact]
         public void CalculateInsurance_GivenSalesPriceBetween500And2000EurosAndIsACamera_ShouldAdd1500EurosToInsuranceCost()
         {
+            //Arrange
             var product = new Product()
             {
 
@@ -35,14 +36,17 @@ namespace Insurance.Api.Tests
 
             const decimal expectedInsuranceValue = 1000;
 
+            //Act
             var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
-          
+
+            //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
 
         [Fact]
         public void CalculateInsurance_GivenSalesPriceLessThan500EurosAndIsALaptop_ShouldAdd500EurosToInsuranceCost()
         {
+            //Arrange
             var product = new Product()
             {
 
@@ -62,13 +66,17 @@ namespace Insurance.Api.Tests
 
             const decimal expectedInsuranceValue = 500;
 
+            //Act
             var result = new InsuranceService().CalculateInsuranceWithSurcharge(product, productType);
+
+            //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
 
         [Fact]
         public void CalculateInsuranceForOrders()
         {
+            //Arrange
             var orderDto = new OrderDto()
             {
                 OrderId = 1,
@@ -103,7 +111,11 @@ namespace Insurance.Api.Tests
             };
 
             const decimal expectedInsuranceValue = 15000;
+
+            //Act
             var result = new InsuranceService().CalculateInsuranceWithoutSurcharge(orderDto);
+
+            //Assert
             Assert.Equal(expected: expectedInsuranceValue, actual: result, 2);
         }
     }
