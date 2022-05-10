@@ -6,3 +6,4 @@ obj
 packages
 .vs/Insurance.Api/xs/UserPrefs.xml
 .DS_Store
+.vs/Insurance.Api
